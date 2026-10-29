@@ -9,7 +9,7 @@
      C                     MOVE *BLANK    SANSUP  1
      C                     CALL 'CONFSUP'
      C                     PARM           SANSUP
-     *** SUPPRESSION SI REPONSE O
+     *** SUPPRESSION SI REPONSE O ÉÉ
      C           SANSUP    COMP 'O'                      50
      C   50                DELETPRODUIT
      C           FIN       TAG
