@@ -1,0 +1,150 @@
+     *** DECLARATION DE FICHIER
+     FBIEREREFIF  E           K        DISK
+     FBIERESFLCF  E                    WORKSTN
+     F                                        LIGNE KSFILE SFL1
+     *
+     E                    TBM     1   2 70
+     *
+     I           SDS
+     I                                        1  10 PGM
+     *
+     C           PUPD      PLIST
+     C                     PARM           ID      60
+     C                     PARM           SORTIE  1
+     C           PQUIT     PLIST
+     C                     PARM           SANSW   1
+     *** AFFICHAGE
+     C                     EXSR CHARGE
+     C           1         DOWEQ1
+     C  N40                WRITEPIED
+     C   40                WRITEPIED2
+     C                     EXFMTCTL1
+     * F24 / BASCULE PIED
+     C   KY                MOVE *IN40     W40     1
+     C   KY      W40       COMP '0'                      40
+     C   KY                ITER
+     * F8 / WRKSPLF - F9 /DLTSPLF
+     C   KH                EXSR QCMD
+     C   KH                ITER
+     C   KI                EXSR DLTS
+     C   KI                ITER
+     *
+     C   KV                EXSR SYSTEM
+     C   KV                ITER
+     * F3 POPUP
+     C   KC                MOVE *BLANK    SANSW
+     C   KC                CALL 'CONFQUIT'PQUIT
+     C   KC      SANSW     CABEQ'O'       FIN
+     C   KC                ITER
+     * PAGE
+     C   25N83             EXSR CHPAG
+     C   25                ITER
+     C   26                EXSR PREC
+     C   26                ITER
+     * F6 CREATION
+     C   KF                Z-ADD0         ID
+     C   KF                CALL 'BIEREUPD'PUPD
+     * ENTREE OPTIONS
+     C                     EXSR LECTUR
+     * SORTIR FICHE
+     C           SORTIE    COMP 'Q'                      97
+     C   97                LEAVE
+     * RECHARGEMENT
+     C                     EXSR CHARGE
+     C                     ENDDO
+     * END PROGRAM
+     C           FIN       TAG
+     C                     SETON                         LR
+     *** SOUS ROUTINES
+     C           CHARGE    BEGSR
+     C           WREF      SETLLPRODUIT                  50
+     C           WREF      COMP *BLANKS                  51
+     C  N50N51             MOVELTBM,2     MESS
+     C                     EXSR CHPAG
+     C                     ENDSR
+     *
+     C           CHPAG     BEGSR
+     C                     Z-ADD*ZERO     LIGNE   40
+     C                     SETON                     80
+     C                     WRITECTL1
+     C                     SETOF                     8083
+     C           LIGNE     DOWLT11
+     C                     READ PRODUIT                  90
+     C   90                SETON                     83
+     C   90                LEAVE
+     C                     ADD  1         LIGNE
+     C           LIGNE     COMP 1                        61
+     C   61                MOVELPRREPR    FIRST   6
+     C           PRSTPR    COMP STMIPR                 60
+     C                     WRITESFL1
+     C                     ENDDO
+     C           LIGNE     COMP 0                    82
+     C                     SETON                     81
+     C                     ENDSR
+     *
+     C           PREC      BEGSR
+     C           FIRST     SETLLPRODUIT
+     C                     Z-ADD*ZERO     CPT     20
+     C           CPT       DOWLT11
+     C                     READPPRODUIT                  89
+     C   89                LEAVE
+     C                     ADD  1         CPT
+     C                     ENDDO
+     C   89      *LOVAL    SETLLPRODUIT
+     C  N89      PRREPR    SETLLPRODUIT
+     C                     EXSR CHPAG
+     C                     ENDSR
+     *
+     C           LECTUR    BEGSR
+     C                     MOVE *BLANKS   MESS
+     C                     READCSFL1                     91
+     C           *IN91     DOWEQ'0'
+     C           PRREPR    CHAINPRODUIT              90
+     C  N90                Z-ADDPRIDPR    ID
+     C  N90      OPT       CASEQ'2'       MODIF
+     C  N90      OPT       CASEQ'4'       SUPPR
+     C  N90      OPT       CASEQ'6'       IMPRI
+     C  N90      OPT       CASNE' '       ERROPT
+     C                     ENDCS
+     C                     MOVEL*BLANK    OPT
+     C                     UPDATSFL1
+     C                     READCSFL1                     91
+     C                     ENDDO
+     C                     ENDSR
+     * OPT2
+     C           MODIF     BEGSR
+     C                     CALL 'BIEREUPD'PUPD
+     C                     ENDSR
+     * OPT4
+     C           SUPPR     BEGSR
+     C                     CALL 'BIERESUP'
+     C                     PARM           ID
+     C                     ENDSR
+     * OPT6
+     C           IMPRI     BEGSR
+     C                     CALL 'IBIERE'
+     C                     PARM           ID
+     C                     ENDSR
+     * F8
+     C           QCMD      BEGSR
+     C                     CALL 'QCMDEXC'              99
+     C                     PARM 'WRKSPLF' COM    80
+     C                     PARM 80        LEN    155
+     C                     ENDSR
+     * F9
+     C           DLTS      BEGSR
+     C                     CALL 'QCMDEXC'              99
+     C                     PARM '?DLTSPLF'COM
+     C                     PARM 80        LEN    155
+     C                     ENDSR
+     * F21
+     C           SYSTEM    BEGSR
+     C                     CALL 'QUSCMDLN'             99
+     C                     ENDSR
+     * OPT INVALIDE
+     C           ERROPT    BEGSR
+     C                     MOVELTBM,1     MESS
+     C                     ENDSR
+** TBM
+OPTION INVALIDE : CHOISIR 2, 4 OU 6.
+REFERENCE INCONNUE : AFFICHAGE A PARTIR DE LA SUIVANTE.

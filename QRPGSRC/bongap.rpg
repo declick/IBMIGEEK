@@ -1,0 +1,27 @@
+     H            D
+     *** EXPORT CSV DU PF BONBON (CYCLE GAP)
+     FBONBON  IP  E                    DISK
+     FBONCSVF O   F     132            DISK
+     IFBONBON     01
+     * EN TETE
+     OBONCSVF H        1P
+     O                                      'NUMBB'
+     O                                      ';'
+     O                                      'NOM'
+     O                                      ';'
+     O                                      'MARQUE'
+     O                                      ';'
+     O                                      'COULEUR'
+     O                                      ';'
+     O                                      'PRIX'
+     * UNE LIGNE PAR BONBON
+     OBONCSVF D        01
+     O                         NUMBB
+     O                                      ';'
+     O                         NOM
+     O                                      ';'
+     O                         MARQUE
+     O                                      ';'
+     O                         COULEU
+     O                                      ';'
+     O                         PRIX         '  0,  '

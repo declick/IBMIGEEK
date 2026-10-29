@@ -1,0 +1,45 @@
+      *
+     FCALCUL  CF  E                    WORKSTN
+     C           DEBUT     TAG
+     *** AFFICHAGE ECRAN
+     C                     EXFMTFMTCAL
+     C   03                GOTO FIN
+     *** REMISE A ZERO
+     C   06                Z-ADD0         FACT1
+     C   06                Z-ADD0         FACT2
+     C   06                Z-ADD0         RESULT
+     C   06                MOVE *BLANK    COP
+     C   06                SETOF                         50
+     C   06                SETOF                         51
+     C   06                GOTO DEBUT
+     *** CALCUL SELON OPERATEUR
+     C                     Z-ADD0         RESULT
+     C                     SETOF                         50
+      *
+     C           COP       IFEQ '+'
+     C           FACT1     ADD  FACT2     RESULT
+     C                     ENDIF
+      *
+     C           COP       IFEQ '-'
+     C           FACT1     SUB  FACT2     RESULT
+     C                     ENDIF
+      *
+     C           COP       IFEQ '*'
+     C           FACT1     MULT FACT2     RESULT
+     C                     ENDIF
+      *
+     C           COP       IFEQ '/'
+     C           FACT2     ANDNE0
+     C           FACT1     DIV  FACT2     RESULT
+     C                     ENDIF
+      *
+     C           COP       IFEQ '/'
+     C           FACT2     ANDEQ0
+     C                     SETON                         50
+     C                     ENDIF
+      *
+     C           RESULT    COMP 0                      51
+     C                     GOTO DEBUT
+      *
+     C           FIN       TAG
+     C                     SETON                         LR

@@ -1,0 +1,56 @@
+     H            D J
+     * EDITION DES LIVRAISONS PAR CLIENT - RUPTURE L1 SUR LE CLIENT
+     FTLIVL1  IP  E           K        DISK
+     FQSYSPRT O   F     132     OF     PRINTER
+     ILIVSF       01
+     I              LIIDCL                          LIIDCLL1
+     * CALCUL DETAIL
+     C   01      LIQTLI    MULT LIPUHT    MTHT   122
+     C   01      TOTQTE    ADD  LIQTLI    TOTQTE  80
+     C   01      TOTHT     ADD  MTHT      TOTHT  132
+     * CALCUL TOTAL
+     CL1         GENQTE    ADD  TOTQTE    GENQTE  90
+     CL1         GENHT     ADD  TOTHT     GENHT  142
+     * EN TETE PAGE
+     OQSYSPRT H  1 1   1P
+     O       OR        OF
+     O                                    7 'DATE :'
+     O                         UDATE Y   16
+     O                                   72 'PAGE :'
+     O                         PAGE  Z   77
+     O        H  1     1P
+     O       OR        OF
+     O                                   41 'LISTE DES LIVRAISONS'
+     O                                   52 'PAR CLIENT'
+     O        H  2     1P
+     O       OR        OF
+     O                                   41 '--------------------'
+     O                                   52 '-----------'
+     * EN TETE CLIENT
+     O        D 1      L1
+     O                                   10 'CLIENT :'
+     O                         LIIDCL    17
+     O                         LINOCL    48
+     O        D 1      L1
+     O                                   10 'CODE AR.'
+     O                                   20 'ARTICLE'
+     O                                   52 'QTE'
+     O                                   60 'PU HT'
+     O                                   72 'TOTAL HT'
+     * LISTE ARTICLE
+     O        D 1      01
+     O                         LICOAR     9 '   .   '
+     O                         LINOAR    42
+     O                         LIQTLIZ   52
+     O                         MTHT  3   72
+     O                         LIPUHT3   60
+     * TOTAL DU CLIENT
+     O        T 12     L1
+     O                                   41 'TOTAL :'
+     O                         TOTQTEZB  52
+     O                         TOTHT 3B  72
+     * TOTAL GENERAL
+     O        T 1      LR
+     O                                   41 'TOTAL GENERAL :'
+     O                         GENQTEZ   52
+     O                         GENHT 3   72

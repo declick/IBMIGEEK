@@ -1,0 +1,29 @@
+             PGM        PARM(&FICHIER)
+
+             DCL        VAR(&FICHIER) TYPE(*CHAR) LEN(50)
+             DCL        VAR(&USER) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&DIR)  TYPE(*CHAR) LEN(50)
+             DCL        VAR(&PATH) TYPE(*CHAR) LEN(100)
+             DCL        VAR(&MSG)  TYPE(*CHAR) LEN(150)
+
+             CLRPFM     FILE(QUEMIN/BONCSVF) MBR(BONCSVF)
+
+             OVRDBF     FILE(BONCSVF) TOFILE(QUEMIN/BONCSVF) +
+                          MBR(BONCSVF)
+             CALL       PGM(QUEMIN/BONGAP)
+             DLTOVR     FILE(BONCSVF)
+
+             RTVJOBA    USER(&USER)
+             CHGVAR     VAR(&DIR) VALUE('/home/' *TCAT &USER)
+             MKDIR      DIR(&DIR)
+             MONMSG     MSGID(CPFA0A0)
+             CHGVAR     VAR(&PATH) VALUE(&DIR *TCAT '/' *TCAT &FICHIER)
+             CPYTOSTMF  FROMMBR('/QSYS.LIB/QUEMIN.LIB/BONCSVF.FILE/+
+                          BONCSVF.MBR') +
+                          TOSTMF(&PATH) +
+                          STMFOPT(*REPLACE) STMFCCSID(1252)
+
+             CHGVAR     VAR(&MSG) VALUE('Fichier' *BCAT &PATH *TCAT +
+                          ' cree.')
+             SNDPGMMSG  MSG(&MSG)
+             ENDPGM

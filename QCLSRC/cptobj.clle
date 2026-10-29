@@ -1,0 +1,25 @@
+             PGM        PARM(&PARAM)
+
+/* --- Declarations --- */
+              DCLF      FILE(QADSPOBJ)
+              DCL       VAR(&NB) TYPE(*DEC) LEN(10 0) VALUE(0)
+              DCL       VAR(&PARAM) TYPE(*CHAR) LEN(10)
+
+/* --- Liste des objets de la bib QUEMIN --- */
+              DSPOBJD   OBJ(&PARAM/*ALL) OBJTYPE(*ALL) +
+                        OUTPUT(*OUTFILE) OUTFILE(QTEMP/LISTEOBJ)
+
+/* --- On lis les OBJ de la bib --- */
+              OVRDBF    FILE(QADSPOBJ) TOFILE(QTEMP/LISTEOBJ)
+
+/* --- Boucle : une lecture = un objet ---*/
+LOOP:         RCVF
+              MONMSG    MSGID(CPF0864) EXEC(GOTO CMDLBL(END))
+              CHGVAR    VAR(&NB) VALUE(&NB + 1)
+              GOTO      CMDLBL(LOOP)
+
+/* --- Fin : on annule la substitution et on affiche --- */
+END:          DLTOVR FILE(QADSPOBJ)
+SNDPGMMSG  MSG('Nombre d objets dans ' *CAT &PARAM +
+            *TCAT ': ' *CAT %CHAR(&NB))
+              ENDPGM

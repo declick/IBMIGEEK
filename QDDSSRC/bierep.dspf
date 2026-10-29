@@ -1,0 +1,89 @@
+     A*%%TS  SD  20261022  091515  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FBIERE
+     A*%%TS  SD  20261022  091515  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF03(03 'Quitter')
+     A                                      CF12(12 'Annuler')
+     A                                      CF21(21 'Imprimer')
+     A                                  1  2SYSNAME
+     A                                  2  1USER
+     A                                  1 68TIME
+     A                                  2 68DATE
+     A                                      EDTCDE(Y)
+     A                                  1 35'FICHE BIERE'
+     A                                      COLOR(PNK)
+     A                                  5 20'IDENTIFIANT:'
+     A                                      COLOR(WHT)
+     A                                  7 13'REFERENCE  PRODUIT:'
+     A                                      COLOR(WHT)
+     A                                  9 28'NOM:'
+     A                                      COLOR(WHT)
+     A                                 11 18'STOCK PRODUIT:'
+     A                                      COLOR(WHT)
+     A                                 13 18'STOCK MINIMUM:'
+     A                                      COLOR(WHT)
+     A            PRIDPR    R        O  5 33REFFLD(PRODUIT/PRIDPR QUEMIN/BIEREI)
+     A            PRREPR    R        B  7 33REFFLD(PRODUIT/PRREPR QUEMIN/BIEREI)
+     A            PRNOPR    R        B  9 33REFFLD(PRODUIT/PRNOPR QUEMIN/BIEREI)
+     A  51                                  ERRMSG('NOM OBLIGATOIRE')
+     A                                 18 38'Tx TVA'
+     A                                      COLOR(WHT)
+     A                                 18 26'P.U. HT'
+     A                                      COLOR(WHT)
+     A                                 18 35'|'
+     A                                      COLOR(WHT)
+     A                                 18 46'|'
+     A                                      COLOR(WHT)
+     A                                 18 49'P.U. TTC'
+     A                                      COLOR(WHT)
+     A                                 20 35'|'
+     A                                      COLOR(WHT)
+     A            TXTVA     R        B 20 37REFFLD(PRODUIT/TXTVA QUEMIN/BIEREI)
+     A                                      EDTCDE(3)
+     A                                 20 46'|'
+     A                                      COLOR(WHT)
+     A                                 18 23'|'
+     A                                      COLOR(WHT)
+     A            PRUNVE    R        B 20 26REFFLD(PRODUIT/PRUNVE QUEMIN/BIEREI)
+     A                                      EDTCDE(3)
+     A  53                                  ERRMSG('PRIX OBLIGATOIRE')
+     A                                 20 23'|'
+     A                                      COLOR(WHT)
+     A                                 20 59'|'
+     A                                      COLOR(WHT)
+     A                                 18 59'|'
+     A                                      COLOR(WHT)
+     A                                 17 23'+----------------------------------
+     A                                      --+'
+     A                                      COLOR(WHT)
+     A                                 19 23'|----------------------------------
+     A                                      --|'
+     A                                      COLOR(WHT)
+     A                                 21 22' +---------------------------------
+     A                                      ---+'
+     A                                      COLOR(WHT)
+     A            PRIXTT         7Y 2O 20 48EDTCDE(3)
+     A            MODE          12   O  3 35
+     A  95                                  COLOR(GRN)
+     A N95                                  COLOR(YLW)
+     A            MSGSTK        20A  O 11 43COLOR(RED)
+     A                                 15 34'Entrer=Valider'
+     A                                      COLOR(WHT)
+     A                                 23  2'F3=Quitter'
+     A                                      COLOR(BLU)
+     A                                 23 35'F21=Imprimer'
+     A                                      COLOR(BLU)
+     A                                 23 69'F12=Annuler'
+     A                                      COLOR(BLU)
+     A            PRSTPR    R        B 11 33REFFLD(PRODUIT/PRSTPR QUEMIN/BIEREI)
+     A  52                                  ERRMSG('STOCK OBLIGATOIRE')
+     A            STMIPR    R        B 13 33REFFLD(PRODUIT/STMIPR QUEMIN/BIEREI)
+     A                                  3 26'--------'
+     A                                      COLOR(WHT)
+     A                                  3 48'--------'
+     A                                      COLOR(WHT)
+     A                                 20 44'%'
+     A                                      COLOR(WHT)
+     A                                 20 57'€'
+     A                                      COLOR(WHT)

@@ -1,0 +1,47 @@
+     A*%%TS  SD  20261009  123744  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FMTSAI
+     A*%%TS  SD  20261009  123744  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'F3=Exit')
+     A                                  1  2USER
+     A                                  2  2SYSNAME
+     A                                  1 72TIME
+     A                                  2 72DATE
+     A                                      EDTCDE(Y)
+     A                                  1 29'Recherche de bibliotheque'
+     A                                      COLOR(WHT)
+     A                                  5 25'Tapez un mot du texte, puis ENTREE'
+     A                                      COLOR(BLU)
+     A                                 10 19'Texte recherche   :'
+     A                                      COLOR(WHT)
+     A            STXT          20A  I 10 44
+     A                                 23  3'F3=Exit'
+     A                                      COLOR(BLU)
+     A            MESS          70A  O 21  6COLOR(WHT)
+     A          R FMTRES
+     A*%%TS  SD  20261009  123744  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'F3=Exit')
+     A                                      CA12(12 'F12=Return')
+     A                                  1  2USER
+     A                                  2  2SYSNAME
+     A                                  1 67DATE
+     A                                      EDTCDE(Y)
+     A                                  2 67TIME
+     A                                  1 31'Bibliotheques trouvees'
+     A                                      COLOR(WHT)
+     A                                  8 21'Bibliotheque   :'
+     A                                      COLOR(WHT)
+     A            RBIB          10A  O  8 45
+     A                                 13 13'Texte   :'
+     A                                      COLOR(WHT)
+     A                                 23  2'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 23 15'F12=Return'
+     A                                      COLOR(BLU)
+     A            RTXT          45A  O 13 28
+     A                                 18 14'Resultat n° :'
+     A                                      COLOR(WHT)
+     A            RNUM           5A  O 18 31
+     A                                 23 31'Entree=Suivant'
+     A                                      COLOR(BLU)

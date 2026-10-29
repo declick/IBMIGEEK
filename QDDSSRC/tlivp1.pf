@@ -1,0 +1,12 @@
+     A          R LIVSF
+     A            LIIDCL         6S 0       TEXT('ID CLIENT')
+     A            LICOLI         4  0       TEXT('CODE LIVREUR')
+     A            LINOCL        30          TEXT('NOM CLIENT')
+     A            LICOAR         6S 0       TEXT('CODE ARTICLE')
+     A            LINOAR        30          TEXT('LIBELLE ARTICLE')
+     A            LIJJLI         2S 0       TEXT('JOUR LIVRAISON')
+     A            LIMMLI         2S 0       TEXT('MOIS LIVRAISON')
+     A            LIAALI         2S 0       TEXT('ANNEE LIVRAISON')
+     A            LIQTLI         6S 0       TEXT('QUANTITE LIV')
+     A            LIPUHT         6S 2       TEXT('PRIX UNITAIRE HT')
+     A            LITXTV         5S 2       TEXT('TAUX TVA')

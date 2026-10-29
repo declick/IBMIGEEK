@@ -1,0 +1,16 @@
+     FBIEREI  UF  E           K        DISK
+     *** IDENTIFIANT RECU DE LA LISTE
+     C           *ENTRY    PLIST
+     C                     PARM           ID      60
+     *** LECTURE DE LA BIERE
+     C           ID        CHAINPRODUIT              90
+     C   90                GOTO FIN
+     *** POPUP DE CONFIRMATION
+     C                     MOVE *BLANK    SANSUP  1
+     C                     CALL 'CONFSUP'
+     C                     PARM           SANSUP
+     *** SUPPRESSION SI REPONSE O
+     C           SANSUP    COMP 'O'                      50
+     C   50                DELETPRODUIT
+     C           FIN       TAG
+     C                     SETON                         LR

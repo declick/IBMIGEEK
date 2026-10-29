@@ -1,0 +1,137 @@
+     * --------------------------------------------------------------+
+     * H - SPECIFICATION D'ENVIRONNEMENT                             |
+     * F - DECLARATION DES FICHIERS                                  |
+     * E - DECLARATION DES TABLES ET TABLEAUX                        |
+     * L - DECLARATION CARACTERISTIQUE IMPRIMANTE                    |
+     * I - DESCRIPTION DES BUFFERS D'ENTREE - DATA STRUCTURE ETC ... |
+     * C - COMPUTE - LIGNES DE PROGRAMMATION                         |
+     * O - DESCRIPTION DES BUFFERS DE SORTIE                         |
+     * --------------------------------------------------------------+
+     * H - SPECIFICATION D'ENVIRONNEMENT                             |
+     * --------------------------------------------------------------+
+     H            Y
+     * --------------------------------------------------------------+
+     * F - DECLARATION DES FICHIERS                                  |
+     * --------------------------------------------------------------+
+     *** Description d'un fichier Externe en Lecture
+     FFICHIER IF  E                    DISK
+     *** Description d'un fichier Externe en Lecture et Mise à Jour
+     FFICHIER UF  E           K        DISK
+     *** Desc.fichier Externe en Lecture, Mise à Jour et Ajout
+     FFICHIER UF  E           K        DISK                      A
+     ** Description d'un fichier CYCLE PRIMAIRE (Cycle GAP)
+     FFICHIER IP  E                    DISK
+     ** Description d'un fichier ECRAN (Workstation)
+     FECRAN   CF  E                    WORKSTN
+     ** Description d'un fichier IMPRIMANTE
+     FIMPRESS O   E                    PRINTER
+     * --------------------------------------------------------------+
+     * I - DESCRIPTION DES BUFFERS D'ENTREE - DATA STRUCTURE ETC ... |
+     * --------------------------------------------------------------+
+     IFBONBON
+     I              COULEUR                         COLOR
+     IFORMAT
+     I              WARZONE                         WARE
+     * --------------------------------------------------------------+
+     * C - COMPUTE - LIGNES DE PROGRAMMATION                         |
+     * --------------------------------------------------------------+
+     C           *ENTRY    PLIST
+     C                     PARM           CODCLI
+     *** Lire un fichier
+     C                     READ FICHIER                  99
+     *** Ecrire un fichier
+     C                     WRITEFICHIER
+     *** Affichage et lecture d'un ECRAN
+     C                     EXFMTFORMAT
+     *** BOUCLE MODERNE
+     * LES CODES OPERATIONS DO, DOWXX (DOWHILE), DOUXX (DOUNTIL)
+     * XX = EQ, NE, LE, LT, GE, GT
+     C           *IN03     DOWEQ'0'
+     C                     ENDDO
+     *** VRAI BOUCLE
+     C           BOUCLE    TAG
+     C                     GOTO BOUCLE
+     *** MISE A BLANC D'UNE ZONE ALPHA DE 25 DE LONG
+     C                     MOVE *BLANKS   TEXTE  25
+     *** Codes operations +,-,* ET /
+     *** ADDITION
+     C                     Z-ADD*ZERO     Y       20        Y=0
+     C           5         ADD  3         Y                 Y=8
+     C                     ADD  2         Y                 Y=10
+     *** SOUSTRACTION
+     C                     Z-ADD*ZERO     J       20
+     C           10        SUB  2         J                 J=8
+     *** MULTIPLICATION
+     C                     Z-ADD*ZERO     H       20
+     C           5         MULT 3         H                 H=15
+     *** DIVISION
+     C                     Z-ADD*ZERO     D       20
+     C           10        DIV  3         D                 D=3
+     C           99        DIV  10        D                 D=9
+     C                     MVR            RESTE   42
+     *** Condition
+     * LE CODE OPERATION IF (SI) SOUS LA FORME IFXX
+     * XX = EQ, NE, LE, LT, GE, GT
+     C           Y         IFGT 10
+     C                     ENDIF
+     C           TEXTE     IFEQ 'TOTO'
+     C           'TOTO'    DSPLY
+     C                     ELSE
+     C           'TATA'    DSPLY
+     C                     ENDIF
+     * CHAINES DE CARACTÈRES
+     C                     MOVE 'TOTO'    ZON15
+     *   ZON15 = '___________TOTO'
+     C                     MOVE *BLANKS   ZON15
+     *   ZON15 = '_______________'
+     C                     MOVEL'TOTO'    ZON15
+     *   ZON15 = 'TOTO___________'
+     C                     MOVE 'TOTO'    ZON15  15
+     *   ZON15 = 'TOTO_______TOTO'
+     C                     MOVEL'TI'      ZON15
+     *   ZON15 = 'TITO_______TOTO'
+      *---------------------------------------------------------------*
+     * Execution de sous routine
+     C                     EXSR CALCUL
+     * Début de sous routine
+     C           CALCUL    BEGSR
+     * Fin d'une sous routine
+     C                     ENDSR
+     *****************************************************************
+     * REPOSITIONNER LA TETE DE LECTURE SUR UN FICHIER LU EN SEQUENTIE
+     C           *LOVAL    SETLLFICHIER                    DEBUT DE FICHIE
+     C           *HIVAL    SETGTFICHIER                    FIN FICHIER
+     C           CLE       SETLLFICHIER                    SUR CLE
+      *
+     * CODES OPERATIONS FICHIERS
+     * LECTURE SEQUENTIELLE
+     C                     READ FICHIER                  30
+     C           *IN30     IFEQ '1'
+     * 30 = FIN DE FICHIER ATTEINTE LA TETE DE LECTURE EST EN FIN
+     * DE FICHIER
+     * LECTURE SEQUENTIELLE ARRIERE P=PRIOR
+     C                     READPFICHIER                  30
+     C           *IN30     IFEQ '1'
+     * 30 = DEBUT DE FICHIER ATTEINT
+      *
+     C           CODCLI    READEENRFAC                   31
+     * 31 = FIN DU CODCLI
+      *
+     C           CODCLI    REDPEENRFAC                   31
+     * 31 = FIN DU CODCLI EN LECTURE ARRIERE
+      *
+     * REPOSITIONNER LA TETE DE LECTURE SUR UN FICHIER LU EN SEQUENTIEL
+     C           *LOVAL    SETLLCLIENT                     DEBUT FICHIER
+     C           *HIVAL    SETGTCLIENT                     FIN FICHIER R
+     C           CODCLI    SETLLCLIENT                     SUR CODCLI
+     * LECTURE D'UN ENREGISTREMENT SUR CLEF
+     C           CODCLI    CHAINENRCLI               50
+     C           *IN50     IFEQ '0'                        TROUVÉ
+     C           *IN50     IFEQ '1'                        NON TROUVÉ
+     * ECRITURES FICHIERS
+     * AJOUT
+     C                     WRITEENRCLI                     SUR NOM DU FORMAT
+     * MODIFICATION
+     C                     UPDATENRCLI                     SUR NOM DU FORMAT
+     * SUPPRESSION
+     C                     DELETCLIENT                     SUR NOM FICHIER

@@ -1,0 +1,38 @@
+     H            D
+      *
+     FCANDYI  IP  E           K        DISK
+     FQPRINT  O   F     132            PRINTER
+      *
+     E                    TBB     1   4 80
+      *
+     IFBONBON     01
+     I              COULEUR                         COLOR
+      *
+     OQPRINT  H 1  1   1P
+     O                                   35 'LISTE DES BONBONS'
+     O                                   60 'EDITE LE :'
+     O                         UDATE Y +  1
+      *
+     OQPRINT  H 12     1P
+     O                                   35 '================='
+      *
+     OQPRINT  H 1      1P
+     O                         TBB,1     80
+     OQPRINT  H 1      1P
+     O                         TBB,2     80
+     OQPRINT  H 1      1P
+     O                         TBB,3     80
+     OQPRINT  D 1      01
+     O                         TBB,4     80
+     O                         NUMBERZ    8
+     O                         NOM       31
+     O                         MARQUE    54
+     O                         COLOR     67
+     O                         PRIX      77 '  0 ,  &€'
+     OQPRINT  T 1      LR
+     O                         TBB,1     80
+** TBB
++----------------------------------------------------------------------------+
+| NUMERO | NOM                  | MARQUE               | COULEUR   | PRIX    |
+|--------|----------------------|----------------------|-----------|---------|
+|        |                      |                      |           |         |

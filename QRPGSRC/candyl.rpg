@@ -1,0 +1,53 @@
+     H            D
+      *
+     FCANDYI  IF  E           K        DISK
+     FQPRINT  O   F     132            PRINTER
+      *
+     E                    TBB     1   4 80
+      *
+     IFBONBON
+     I              COULEUR                         COLOR
+      *
+     C                     EXCPTENTETE
+     C                     EXCPTTITRE
+     C                     EXCPTTIT1
+     C                     EXCPTTIT2
+     C                     EXCPTTIT3
+      *
+     C                     READ FBONBON                  99
+     C           *IN99     DOWEQ'0'
+     C                     EXCPTLIGNE
+     C                     READ FBONBON                  99
+     C                     ENDDO
+     C                     EXCPTBAS
+      *
+     C                     SETON                         LR
+      *
+     OQPRINT  E 1              ENTETE
+     O                                   35 'LISTE DES BONBONS'
+     O                                   60 'EDITE LE :'
+     O                         UDATE Y +  1
+      *
+     OQPRINT  E 12             TITRE
+     O                                   35 '================='
+      *
+     OQPRINT  E 1              TIT1
+     O                         TBB,1     80
+     OQPRINT  E 1              TIT2
+     O                         TBB,2     80
+     OQPRINT  E 1              TIT3
+     O                         TBB,3     80
+     OQPRINT  E 1              LIGNE
+     O                         TBB,4     80
+     O                         NUMBERZ    8
+     O                         NOM       31
+     O                         MARQUE    54
+     O                         COLOR     67
+     O                         PRIX      77 '  0 ,  &€'
+     OQPRINT  E 1              BAS
+     O                         TBB,1     80
+** TBB
++----------------------------------------------------------------------------+
+| NUMERO | NOM                  | MARQUE               | COULEUR   | PRIX    |
+|--------|----------------------|----------------------|-----------|---------|
+|        |                      |                      |           |         |

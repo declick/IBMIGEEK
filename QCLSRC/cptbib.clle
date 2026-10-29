@@ -1,0 +1,25 @@
+PGM
+
+/* --- Declarations : le fichier et les variables --- */
+              DCLF      FILE(QADSPOBJ)
+              DCL       VAR(&NB) TYPE(*DEC) LEN(10 0) VALUE(0)
+              DCL       VAR(&NBA) TYPE(*CHAR) LEN(10)
+
+/* --- Liste de toutes les bibliotheques dans un fichier --- */
+              DSPOBJD   OBJ(QSYS/*ALL) OBJTYPE(*LIB) +
+                        OUTPUT(*OUTFILE) OUTFILE(QTEMP/LISTEBIB)
+
+/* --- On lit LISTEBIB a la place du template --- */
+              OVRDBF    FILE(QADSPOBJ) TOFILE(QTEMP/LISTEBIB)
+
+/* --- Boucle : une lecture = une bibliotheque --- */
+LOOP:         RCVF
+              MONMSG    MSGID(CPF0864) EXEC(GOTO CMDLBL(END))
+              CHGVAR    VAR(&NB) VALUE(&NB + 1)
+              GOTO      CMDLBL(LOOP)
+
+/* --- Fin : on annule la substitution et on affiche --- */
+END:          DLTOVR    FILE(QADSPOBJ)
+              CHGVAR    VAR(&NBA) VALUE(&NB)
+              SNDPGMMSG MSG('Nombre de bib: ' *CAT %CHAR(&NB))
+              ENDPGM

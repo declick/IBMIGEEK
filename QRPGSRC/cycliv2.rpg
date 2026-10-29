@@ -1,0 +1,71 @@
+     H            D
+     * BON DE LIVRAISON / UN CLIENT PAR PAGE
+     FTLIVL2  IP  E           K        DISK
+     FQSYSPRT O   F     132     OF     PRINTER
+     ILIVSF       01
+     I              LIIDCL                          LIIDCLL4
+     I              LIAALI                          LIAALIL3
+     I              LIMMLI                          LIMMLIL2
+     I              LIJJLI                          LIJJLIL1
+     * CALCUL
+     C   01      LIQTLI    MULT LIPUHT    MTHT    72
+     C   01      MTHT      MULT LITXTV    WTVA   134
+     C   01      WTVA      DIV  100       MTVA    92H
+     C   01      MTHT      ADD  MTVA      MTTC    72
+     C   01      TOTJ      ADD  MTHT      TOTJ    92
+     C   01      TOTHT     ADD  MTHT      TOTHT   92
+     C   01      TOTTTC    ADD  MTTC      TOTTTC  92
+     *
+     CL2                   Z-ADD0         PAGE
+     * EN TETE DU BON
+     OQSYSPRT H  101   L1
+     O       OR        OF
+     O                                    7 'DATE :'
+     O                         UDATE Y   16
+     O                                   72 'PAGE :'
+     O                         PAGE  Z   77
+     O        H  1     L1
+     O       OR        OF
+     O                                   46 'BON DE LIVRAISON'
+     O        H  2     L1
+     O       OR        OF
+     O                                   46 '----------------'
+     O        H  3     L1
+     O       OR        OF
+     O                                   10 'CLIENT :'
+     O                         LIIDCL    17
+     O                         LINOCL    48
+     O                                   62 'LIVRE LE :'
+     O                         LIJJLI    65
+     O                                   66 '/'
+     O                         LIMMLI    68
+     O                                   69 '/'
+     O                         LIAALI    71
+     * EN TETE DU JOUR
+     O        H  1     L1
+     O       OR        OF
+     O                                   10 'Code ar.'
+     O                                   19 'Article'
+     O                                   40 'Qté'
+     O                                   50 'PU HT'
+     O                                   61 'TOTAL HT'
+     O                                   72 'TOTAL TTC'
+     O                                   80 'TVA %'
+     * LIGNE ARTICLE
+     O        D  1     01
+     O                         LICOAR     9 '   .   '
+     O                         LINOAR    42
+     O                         LIQTLIZ   40
+     O                         LIPUHT3   50
+     O                         MTHT  3   61
+     O                         MTTC  3   72
+     O                         LITXTV3   80
+     * TOTAL DU BON
+     O        T 21     L1
+     O                                   13 'TOTAL HT  :'
+     O                         TOTHT 3B  26
+     O                                   28 '€'
+     O        T  1     L1
+     O                                   13 'TOTAL TTC :'
+     O                         TOTTTC3B  26
+     O                                   28 '€'

@@ -1,0 +1,37 @@
+     *** IMPRIMER UNE FICHE BONBON
+     H            D
+      *
+     FCANDYI  IF  E                    DISK
+     FQPRINT  O   F     132            PRINTER
+      *
+     IFBONBON
+     I              COULEUR                         COLOR
+      *
+     C           *ENTRY    PLIST
+     C                     PARM           NUMBER
+      *
+     C           NUMBER    CHAINFBONBON              99
+     C                     EXCPTFIC
+     C                     MOVE '1'       *INLR
+      *
+     OQPRINT  E  1             FIC
+     O                                   20 'FICHE BONBON'
+     O                                   40 'EDITER LE :'
+     O                         UDATE Y +  1
+     OQPRINT  E  3             FIC
+     O                                   20 '============'
+     OQPRINT  E  1             FIC
+     O                                      'NUMBER ... :'
+     O                         NUMBER  +  1
+     OQPRINT  E  1             FIC
+     O                                      'NOM ...... :'
+     O                         NOM     +  1
+     OQPRINT  E  1             FIC
+     O                                      'MARQUE ... :'
+     O                         MARQUE  +  1
+     OQPRINT  E  1             FIC
+     O                                      'COULEUR .. :'
+     O                         COLOR   +  1
+     OQPRINT  E  1             FIC
+     O                                      'PRIX ..... :'
+     O                         PRIX    +  1 '  0 ,  &EURO'

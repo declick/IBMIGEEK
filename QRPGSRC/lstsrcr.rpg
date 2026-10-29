@@ -1,0 +1,237 @@
+     H            D
+     *** LISTE ET EXPORT DES MEMBRES SOURCES
+     FQAFDMBRLIF  E                    DISK                           UC
+     FLSTSRCD CF  E                    WORKSTN
+     F                                        LIGNE KSFILE SFL1
+     *
+     E                    TBM     1   5 50
+     E                    TBC     1   3 80
+     *
+     I           SDS
+     I                                        1  10 PGM
+     * DATE
+     IWDATE       DS
+     I                                        1   2 WJJ
+     I                                        3   3 WS1
+     I                                        4   5 WMM
+     I                                        6   6 WS2
+     I                                        7   8 WAA
+     * HORODATAGE
+     IWSTAMP      DS
+     I                                        1   4 STAA
+     I                                        5   6 STMM
+     I                                        7   8 STJJ
+     I                                        9   9 STSEP
+     I                                       10  15 STHMS
+     * PARAMETRES
+     C           *ENTRY    PLIST
+     C                     PARM           WLIB   10
+     C           PLMBR     PLIST
+     C                     PARM           SDIR
+     C                     PARM           SLIB
+     C                     PARM           WFIC   10
+     C                     PARM           WMBR   10
+     C                     PARM           WATR   10
+     C                     PARM           WRC     1
+     C                     PARM           RMSG   70
+     C           PQUIT     PLIST
+     C                     PARM           SANSW   1
+     * INITIALISATION
+     C                     MOVELWLIB      SLIB
+     C                     MOVE '/'       WS1
+     C                     MOVE '/'       WS2
+     C                     MOVE '_'       STSEP
+     C                     OPEN QAFDMBRL
+     C                     EXSR CHARGE
+     *** BOUCLE AFFICHAGE
+     C           1         DOWEQ1
+     C                     WRITEPIED
+     C                     EXFMTCTL1
+     C                     MOVE *BLANK    MESS
+     C   KC                MOVE *BLANK    SANSW
+     C   KC                CALL 'CONFQUIT'PQUIT
+     C   KC      SANSW     CABEQ'O'       FIN
+     C   KC                ITER
+     C   KL                LEAVE
+     C           *INKE     CASEQ'1'       RAFR
+     C           *INKI     CASEQ'1'       REPERT
+     C           *INKV     CASEQ'1'       ZIP
+     C                     CAS            ENTREE
+     C                     ENDCS
+     C                     ENDDO
+     C           FIN       TAG
+     C                     CLOSEQAFDMBRL
+     C                     SETON                         LR
+     *** SOUS ROUTINES
+     C           CHARGE    BEGSR
+     C                     Z-ADD0         LIGNE   40
+     C                     Z-ADD0         WNB     50
+     C                     MOVEA'1000'    *IN,80
+     C                     WRITECTL1
+     C                     SETOF                     80
+     C           1         SETLLQAFDMBRL
+     C                     READ QAFDMBRL                 90
+     C           *IN90     DOWEQ'0'
+     C           MLSEU2    COMP *BLANK                   74
+     C  N74                ADD  1         WNB
+     C  N74                EXSR FILTRE
+     C  N74 71             EXSR ECRIT
+     C                     READ QAFDMBRL                 90
+     C                     ENDDO
+     C           LIGNE     COMP 0                    82  75
+     C   75                MOVELTBM,1     MESS
+     C                     SETON                     8183
+     C                     ENDSR
+     *** FILTRE
+     C           FILTRE    BEGSR
+     C                     MOVELMLFILE    WVAL   10
+     C                     MOVELFFIC      WFLT   10
+     C                     EXSR GENER
+     C   71                MOVELMLSEU2    WVAL
+     C   71                MOVELFATR      WFLT
+     C   71                EXSR GENER
+     C                     ENDSR
+     *** GENER
+     C           GENER     BEGSR
+     C                     SETON                     71
+     C           WFLT      CABEQ*BLANK    FINGEN
+     C           '*'       SCAN WFLT      POS     20     77
+     C  N77      WVAL      COMP WFLT                     71
+     C   77      POS       SUB  1         LG      20
+     C   77      LG        COMP 0                        78
+     C   77N78   LG        SUBSTWVAL:1    WK1    10 P
+     C   77N78   LG        SUBSTWFLT:1    WK2    10 P
+     C   77N78   WK1       COMP WK2                      71
+     C           FINGEN    TAG
+     C                     ENDSR
+     *** ECRIT
+     C           ECRIT     BEGSR
+     C                     MOVELMLFILE    SFIC
+     C                     MOVELMLNAME    SMBR
+     C                     MOVELMLSEU2    SATR
+     C                     MOVELMLMTXT    STXT
+     C           2         SUBSTMLCHGD:5  WJJ
+     C           2         SUBSTMLCHGD:3  WMM
+     C           2         SUBSTMLCHGD:1  WAA
+     C                     MOVELWDATE     SDAT
+     C                     MOVE *BLANKS   OPT
+     C                     ADD  1         LIGNE
+     C                     WRITESFL1
+     C                     ENDSR
+     *** ENTREE
+     C           ENTREE    BEGSR
+     C                     READCSFL1                     91
+     C           *IN91     DOWEQ'0'
+     C           OPT       CASEQ'6'       OPT6
+     C           OPT       CASNE' '       ERROPT
+     C                     ENDCS
+     C                     READCSFL1                     91
+     C                     ENDDO
+     C                     EXSR CHARGE
+     C                     ENDSR
+     *** OPT6
+     C           OPT6      BEGSR
+     C                     MOVELSFIC      WFIC
+     C                     MOVELSMBR      WMBR
+     C                     MOVELSATR      WATR
+     C                     EXSR EXPMBR
+     C                     MOVELRMSG      MESS
+     C                     ENDSR
+     *** EXPMBR
+     C           EXPMBR    BEGSR
+     C                     MOVELTBM,2     RMSG
+     C                     MOVE '1'       WRC
+     C           SDIR      CABEQ*BLANKS   FINEXP
+     C                     CALL 'EXPMBRC' PLMBR        99
+     C           FINEXP    TAG
+     C                     ENDSR
+     C           ERROPT    BEGSR
+     C                     MOVELTBM,5     MESS
+     C                     ENDSR
+     *** REPERT
+     C           REPERT    BEGSR
+     C                     MOVELSDIR      WDIR
+     C                     MOVE *BLANKS   WMSG
+     C           *INKL     DOWEQ'0'
+     C                     EXFMTWREP
+     C   KL                LEAVE
+     C                     CALL 'CHKDIRC'              99
+     C                     PARM           WDIR
+     C                     PARM           WRC
+     C           WRC       COMP '0'                      76
+     C   76                MOVELWDIR      SDIR
+     C   76                LEAVE
+     C                     MOVELTBM,3     WMSG
+     C                     ENDDO
+     C                     ENDSR
+     *** ZIP
+     C           ZIP       BEGSR
+     C                     MOVELTBM,2     MESS
+     C           SDIR      CABEQ*BLANKS   FINZIP
+     C                     TIME           WTIME  140
+     C                     MOVE WTIME     WTIMA  14
+     C           6         SUBSTWTIMA:1   STHMS
+     C           2         SUBSTWTIMA:7   STJJ
+     C           2         SUBSTWTIMA:9   STMM
+     C           4         SUBSTWTIMA:11  STAA
+     C                     MOVELSLIB      ZLIB
+     C                     Z-ADDWNB       ZNB
+     C           SDIR      CAT  '/':0     ZARC      P
+     C           ZARC      CAT  SLIB:0    ZARC      P
+     C           ZARC      CAT  '_':0     ZARC      P
+     C           ZARC      CAT  WSTAMP:0  ZARC      P
+     C           ZARC      CAT  '.zip':0  ZARC      P
+     C                     MOVE 'N'       ZCONF
+     C                     EXFMTWZIP
+     C                     MOVELTBM,4     MESS
+     C   KL                GOTO FINZIP
+     C           ZCONF     CABNE'O'       FINZIP
+     C                     Z-ADD0         WNBX    50
+     C           1         SETLLQAFDMBRL
+     C                     READ QAFDMBRL                 90
+     C           *IN90     DOWEQ'0'
+     C           MLSEU2    COMP *BLANKS                  74
+     C  N74                EXSR EXPALL
+     C                     READ QAFDMBRL                 90
+     C                     ENDDO
+     C                     CALL 'EXPZIPC'              99
+     C                     PARM           SDIR
+     C                     PARM           SLIB
+     C                     PARM           WSTAMP
+     C                     PARM           WNBX
+     C                     PARM           WRC
+     C                     PARM           RMSG
+     C                     MOVELRMSG      MESS
+     C           FINZIP    TAG
+     C                     ENDSR
+     *** EXPALL
+     C           EXPALL    BEGSR
+     C                     MOVELMLFILE    WFIC
+     C                     MOVELMLNAME    WMBR
+     C                     MOVELMLSEU2    WATR
+     C                     EXSR EXPMBR
+     C           WRC       COMP '0'                      79
+     C   79                ADD  1         WNBX
+     C                     ENDSR
+     *** RAFR
+     C           RAFR      BEGSR
+     C                     CLOSEQAFDMBRL
+     C           TBC,1     CAT  SLIB:0    WCMD  120 P
+     C           WCMD      CAT  TBC,2:0   WCMD      P
+     C           WCMD      CAT  TBC,3:1   WCMD      P
+     C                     CALL 'QCMDEXC'              99
+     C                     PARM           WCMD
+     C                     PARM 120       WLEN   155
+     C                     OPEN QAFDMBRL
+     C                     EXSR CHARGE
+     C                     ENDSR
+** TBM
+AUCUN MEMBRE NE CORRESPOND AUX CRITERES
+DEFINISSEZ D'ABORD LE REPERTOIRE IFS (F9)
+LE REPERTOIRE N'EXISTE PAS
+EXPORT ZIP ANNULE
+OPTION INVALIDE : SAISIR 6
+** TBC
+DSPFD FILE(
+/*ALL) TYPE(*MBRLIST) OUTPUT(*OUTFILE)
+FILEATR(*PF) OUTFILE(QTEMP/LSTMBR)

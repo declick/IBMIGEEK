@@ -1,0 +1,65 @@
+     *** DECLARATION DE FICHIER
+     H
+     FCANDYP  CF  E                    WORKSTN
+     FCANDYI  UF  E           K        DISK                      A
+     E                    TBB     1   2 12
+     *** RENOMAGE ZONE
+     IFBONBON
+     I              COULEUR                         COLOR
+     *** TRAITEMENT
+     C           *ENTRY    PLIST
+     C                     PARM           ID      60
+     C           PQUIT     PLIST
+     C                     PARM           SANSW   1
+     *** INITIALISATION
+     C           ID        CHAINFBONBON              90
+     *** SI ENREGISTREMENT TROUVE MODE MODIFICATION
+     C  N90                MOVELTBB,1     MODE
+     C   90                MOVELTBB,2     MODE
+     *** SI ENREGISTREMENT NON TROUVE MODE CREATION
+     C   90                EXSR NEWNB
+     *** BOUCLE D AFFICHAGE
+     C           1         DOWEQ1
+     C                     EXFMTFDETAILS
+     *** TOUCHE DE FONCTION : F3 = POPUP
+     C   KC                CALL 'CONFQUIT'PQUIT
+     C   KC      SANSW     CABEQ'O'       FIN
+     C   KC                ITER
+     *** CONTROLE DE SAISIE
+     C                     EXSR CTL
+     *** MISE A JOUR DU FICHIER
+     C  N51                EXSR MAJ
+     C  N51                LEAVE
+     C                     ENDDO
+     *** FIN TRAITEMENT
+     C           FIN       TAG
+     C                     SETON                     LR
+     *** SOUS ROUTINES
+     C           NEWNB     BEGSR
+     C           *HIVAL    SETGTFBONBON
+     C                     READPFBONBON                  89
+     C   89                Z-ADD0         NUMBER
+     C                     ADD  1         NUMBER
+     C                     MOVE *BLANKS   NOM
+     C                     MOVE *BLANKS   MARQUE
+     C                     MOVE *BLANKS   COLOR
+     C                     Z-ADD0         PRIX
+     C                     ENDSR
+     *** CONTROLE DE SAISIE (51 = ZONE VIDE)
+     C           CTL       BEGSR
+     C                     SETOF                     51
+     C           NOM       IFEQ *BLANKS
+     C           MARQUE    OREQ *BLANKS
+     C           COLOR     OREQ *BLANKS
+     C           PRIX      OREQ 0
+     C                     SETON                     51
+     C                     ENDIF
+     C                     ENDSR
+     *** MISE A JOUR DU FICHIER
+     C           MAJ       BEGSR
+     C  N90                UPDATFBONBON
+     C   90                WRITEFBONBON
+     C                     ENDSR
+** TBB
+MODIFICATION
+  CREATION

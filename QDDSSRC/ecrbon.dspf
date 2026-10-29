@@ -1,0 +1,55 @@
+     A*%%TS  SD  20261016  093108  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FMTBONUM
+     A*%%TS  SD  20261016  093108  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'F3=EXIT')
+     A                                  1  2SYSNAME
+     A                                  2  2USER
+     A                                  1 71DATE
+     A                                      EDTCDE(Y)
+     A                                  2 71TIME
+     A                                  1 30'j aime pas les bonbon'
+     A                                      COLOR(WHT)
+     A                                 11 15'Entree le numero du bonbon :'
+     A                                      COLOR(WHT)
+     A                                  7  9'ici on rentre le numero d un bonbo-
+     A                                      n pour avoir tout sont detail'
+     A                                      COLOR(BLU)
+     A            SMESS         70A  O 21  6COLOR(WHT)
+     A                                 23 37'F3=EXIT'
+     A                                      COLOR(BLU)
+     A            SBON           6Y 0I 11 46
+     A          R FMTBONAF
+     A*%%TS  SD  20261016  083247  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'F3=Exit')
+     A                                      CA12(12 'F12=Return')
+     A                                  1  2SYSNAME
+     A                                  2  2USER
+     A                                  1 67TIME
+     A                                  2 66DATE
+     A                                      EDTCDE(Y)
+     A                                  1 25'J aime toujours pas les bonbons'
+     A                                      COLOR(WHT)
+     A                                  5 18'Ici on affiche les bonbons demande-
+     A                                      r par numero'
+     A                                      COLOR(BLU)
+     A                                  9  8'Nom :'
+     A                                      COLOR(WHT)
+     A                                 11  8'Marque :'
+     A                                      COLOR(WHT)
+     A                                 13  8'Couleur :'
+     A                                      COLOR(WHT)
+     A                                 15  8'Prix :'
+     A                                      COLOR(WHT)
+     A                                 21 24'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 21 36'F12=Return'
+     A                                      COLOR(BLU)
+     A            NOM       R        O  9 14REFFLD(FBONBON/NOM QUEMIN/BONBON)
+     A            MARQUE    R        O 11 17REFFLD(FBONBON/MARQUE QUEMIN/BONBON)
+     A            COULEU    R        O 13 18REFFLD(FBONBON/COULEU QUEMIN/BONBON)
+     A            PRIX      R        O 15 16REFFLD(FBONBON/PRIX QUEMIN/BONBON)
+     A                                 17  8'Nombre :'
+     A                                      COLOR(WHT)
+     A            NUMBB     R        O 17 17REFFLD(FBONBON/NUMBB QUEMIN/BONBON)

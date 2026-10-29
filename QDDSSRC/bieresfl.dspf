@@ -1,0 +1,103 @@
+     A*%%TS  SD  20261026  133611  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R SFL1                      SFL
+     A*%%TS  SD  20261026  090829  QUEMIN07    REL-V7R5M0  5770-WDS
+     A            PRIDPR    R        H      REFFLD(PRIDPR QUEMIN/BIEREI)
+     A            OPT            1A  B 10  2
+     A                                 10  4'|'
+     A                                 10 13'|'
+     A            PRREPR    R        O 10  6REFFLD(PRODUIT/PRREPR QUEMIN/BIEREI)
+     A            PRNOPR    R        O 10 15REFFLD(PRODUIT/PRNOPR QUEMIN/BIEREI)
+     A                                 10 36'|'
+     A                                 10 45'|'
+     A                                 10 54'|'
+     A            STMIPR    R        O 10 38REFFLD(PRODUIT/STMIPR QUEMIN/BIEREI)
+     A                                      EDTCDE(Z)
+     A            PRSTPR    R        O 10 47REFFLD(PRODUIT/PRSTPR QUEMIN/BIEREI)
+     A                                      EDTCDE(Z)
+     A  60                                  COLOR(RED)
+     A            PRUNVE    R        O 10 56REFFLD(PRODUIT/PRUNVE QUEMIN/BIEREI)
+     A                                      EDTCDE(3)
+     A                                 10 74'%'
+     A                                 10 63'€'
+     A                                 10 65'|'
+     A            TXTVA     R        O 10 67REFFLD(PRODUIT/TXTVA QUEMIN/BIEREI)
+     A                                      EDTCDE(3)
+     A          R CTL1                      SFLCTL(SFL1)
+     A*%%TS  SD  20261026  133611  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      SFLSIZ(0011)
+     A                                      SFLPAG(0011)
+     A                                      CF03(03 'QUITTER')
+     A                                      CF05(05 'REAFFICHER')
+     A                                      CF06(06 'CREATION')
+     A                                      PAGEDOWN(25 'PAGE SUIVANTE')
+     A                                      PAGEUP(26 'PAGE PRECEDENTE')
+     A                                      CF08(08 'WRKSPLF')
+     A                                      CF09(09 'DLTSPLF')
+     A                                      CF24(24 'SWITCH OPTION')
+     A                                      CF21(21 'SYSTEME')
+     A                                      OVERLAY
+     A  82                                  SFLDSP
+     A  81                                  SFLDSPCTL
+     A  80                                  SFLCLR
+     A  83                                  SFLEND(*MORE)
+     A                                  2  2USER
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  2 72TIME
+     A                                  9  2'O'
+     A                                      COLOR(WHT)
+     A                                  9  6'Ref.'
+     A                                      COLOR(WHT)
+     A                                  9 15'Produit'
+     A                                      COLOR(WHT)
+     A                                  9 38'Mini.'
+     A                                      COLOR(WHT)
+     A                                  9 47'Actuel'
+     A                                      COLOR(WHT)
+     A                                  9 56'Unit.'
+     A                                      COLOR(WHT)
+     A                                  9 67'TVA'
+     A                                      COLOR(WHT)
+     A                                  8 38'Stock'
+     A                                      COLOR(BLU)
+     A                                  8 47'Stock'
+     A                                      COLOR(BLU)
+     A                                  8 56'Prix'
+     A                                      COLOR(BLU)
+     A                                  8 67'Taux'
+     A                                      COLOR(BLU)
+     A                                  6  3'2=Modifier'
+     A                                      COLOR(BLU)
+     A                                  6 34'6=Imprimer'
+     A                                      COLOR(BLU)
+     A            WREF           6A  I  4 36
+     A            PGM           10A  O  1  2
+     A                                  1 32'Liste des Bieres!'
+     A                                      COLOR(WHT)
+     A                                  4  7'Afficher à partir de Ref . :'
+     A                                  6 18'4=Supprimer'
+     A                                      COLOR(BLU)
+     A          R PIED
+     A*%%TS  SD  20261026  115245  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                 23  2'F3=Quitter'
+     A                                      COLOR(BLU)
+     A                                 23 16'F5=Reafficher'
+     A                                      COLOR(BLU)
+     A                                 23 34'F6=Creation'
+     A                                      COLOR(BLU)
+     A                                 23 49'F24=Autres Touches'
+     A                                      COLOR(BLU)
+     A            MESS          70A  O 22  6COLOR(RED)
+     A          R PIED2
+     A*%%TS  SD  20261026  115227  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                 23  2'F8=WRKSPLF'
+     A                                      COLOR(BLU)
+     A                                 23 17'F9=DLTSPLF'
+     A                                      COLOR(BLU)
+     A                                 23 32'F21=Systeme'
+     A                                      COLOR(BLU)
+     A                                 23 48'F24=Autres Touches'
+     A                                      COLOR(BLU)
+     A            MESS          70A  O 22  6COLOR(RED)

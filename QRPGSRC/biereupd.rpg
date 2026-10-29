@@ -1,0 +1,100 @@
+     *===============================================================*
+     * PROGRAMME : BIEREUPD                                          *
+     * OBJET     : CREATION OU MODIFICATION FICHE BIERE              *
+     * ID    6,0 : IDENTIFANT BIERE(INCONNU = MODE CREATION)         *
+     * DATE      : 22/01/26                                          *
+     *===============================================================*
+     H            D
+     *
+     FBIEREP  CF  E                    WORKSTN
+     FBIEREI  UF  E           K        DISK                      A
+     FBIEREPR O   E                    PRINTER
+     *
+     E                    TBB     1   2 12
+     E                    TBM     1   1 20
+     *** PSDS -> NBR DE PARMAMETRES RECUS
+     I           SDS
+     I                                     *PARMS   PARMS
+     *
+     C           *ENTRY    PLIST
+     C                     PARM           ID      60
+     C                     PARM           SORTIE  1
+     C           PQUIT     PLIST
+     C                     PARM           SANSW   1
+     C           PARMS     COMP 2                      72
+     *
+     C                     EXSR INIT
+     *** BOUCLE D AFFICHAGE
+     C           1         DOWEQ1
+     C  N70                EXSR CALC
+     C                     EXFMTFBIERE
+     *** TOUCHE DE FONCTION
+     C   12N72             MOVE 'R'       SORTIE
+     C   12                GOTO FIN
+     C   03                MOVE *BLANK    SANSW
+     C   03                CALL 'CONFQUIT'PQUIT
+     C   03N72             MOVE 'Q'       SORTIE
+     C   03      SANSW     CABEQ'O'       FIN
+     C   03                ITER
+     C   21                WRITEFICHE
+     C   21                ITER
+     *** CONTROLE DE SAISIE
+     C                     EXSR CTL
+     *** MISE A JOUR DU FICHIER
+     C  N70                EXSR MAJ
+     C                     ENDDO
+     *** FIN BOUCLE/TRAITEMENT
+     C           FIN       TAG
+     C                     SETON                         LR
+     *** SOUS ROUTINES
+     C           INIT      BEGSR
+     C           ID        CHAINPRODUIT              90
+     * Trouver -> mode modification
+     C  N90                MOVELTBB,1     MODE
+     C  N90                SETOF                     95
+     * Non trouvee -> mode creation / derniere cle +1
+     C   90      *HIVAL    SETGTPRODUIT
+     C   90                READPPRODUIT                  89
+     C   90      PRIDPR    ADD  1         WNUM    60
+     C   89                Z-ADD1         WNUM
+     C   90                CLEARFBIERE
+     C   90                SETON                     95
+     C   90                MOVELTBB,2     MODE
+     C   90                Z-ADDWNUM      PRIDPR
+     C   90                Z-ADDWNUM      ID
+     C                     ENDSR
+     *** CALCULS ALERTE STOCK
+     C           CALC      BEGSR
+     C                     MOVE *BLANKS   MSGSTK
+     C           PRSTPR    COMP STMIPR                 71
+     C   71                MOVELTBM,1     MSGSTK
+     * Calcul TVA
+     C           PRUNVE    MULT TXTVA     WTVA   104
+     C           WTVA      DIV  100       WTVA
+     C           PRUNVE    ADD  WTVA      PRIXTT    H
+     C                     ENDSR
+     *** CONTROLE DE SAISIE
+     C           CTL       BEGSR
+     * NOM GERER PAR LE PROGRAMME / ERRMSG 51
+     * STOCK GERER PAR LE PROGRAMME / ERRMSG 52
+     * PRIX UNITAIRE  GERER PAR LE PROGRAMME / ERRMSG 53
+     C                     SETOF                         70
+     C           PRNOPR    COMP *BLANK                   51
+     C           PRSTPR    COMP 0                        52
+     C           PRUNVE    COMP 0                        53
+     C   51                SETON                         70
+     C   52                SETON                         70
+     C   53                SETON                         70
+     C                     ENDSR
+     *** MISE A JOUR DU FICHIER
+     C           MAJ       BEGSR
+     C  N90                UPDATPRODUIT
+     C   90                WRITEPRODUIT
+     C                     EXSR INIT
+     C                     ENDSR
+     *
+** TBB
+MODIFICATION
+CREATION
+** TBM
+ATTENTION STOCK BAS

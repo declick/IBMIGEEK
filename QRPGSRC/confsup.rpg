@@ -1,0 +1,16 @@
+     FPOPUPS  CF  E                    WORKSTN
+      *** PARAMETRE RECU / RENVOYE A L APPELANT
+     C           *ENTRY    PLIST
+     C                     PARM           SANSUP  1
+      *** AFFICHAGE FENETRE JUSQU A F3 OU F12
+     C           *IN03     DOWEQ'0'
+     C           *IN12     ANDEQ'0'
+     C                     EXFMTWSUP
+     C                     ENDDO
+      *** TRADUCTION DE LA TOUCHE EN REPONSE
+     C           *IN03     IFEQ '1'
+     C                     MOVE 'O'       SANSUP
+     C                     ELSE
+     C                     MOVE 'N'       SANSUP
+     C                     ENDIF
+     C                     SETON                         LR

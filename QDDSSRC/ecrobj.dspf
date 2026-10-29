@@ -1,0 +1,37 @@
+     A*%%TS  SD  20261008  140845  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FMTOBJ
+     A*%%TS  SD  20261008  140845  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'Exit')
+     A                                      CA12(12 'Return')
+     A                                  1  2USER
+     A                                  1 30'Objets d une bibliotheque'
+     A                                      COLOR(WHT)
+     A                                  1 70DATE
+     A                                      EDTCDE(Y)
+     A                                  2 70TIME
+     A                                  5 30'Bibliotheque'
+     A                                      COLOR(WHT)
+     A                                 10 31'Type :'
+     A                                      COLOR(WHT)
+     A                                  8 31'Nom  :'
+     A                                      COLOR(WHT)
+     A                                 12 29'Taille :'
+     A                                      COLOR(WHT)
+     A                                 18 30'Objet n°'
+     A                                      COLOR(WHT)
+     A                                 22  2'F3=Exit'
+     A                                      COLOR(BLU)
+     A            BIB           10A  O  5 45
+     A            NOM           10A  O  8 45
+     A            TYPE          10A  O 10 45
+     A            NUM            5Y 0O 18 45EDTCDE(1)
+     A                                 18 52'/'
+     A                                      COLOR(WHT)
+     A                                  2  2SYSNAME
+     A            TAILLE        10A  O 12 45
+     A  60                                  COLOR(RED)
+     A            TOTAL          5A  O 18 54
+     A                                 22 15'F12=Return'
+     A                                      COLOR(BLU)

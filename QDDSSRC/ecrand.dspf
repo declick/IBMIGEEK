@@ -1,0 +1,15 @@
+     A*%%TS  SD  20261019  110712  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FMT1
+     A*%%TS  SD  20261019  110712  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                  1  2SYSNAME
+     A                                  2  1USER
+     A                                  1 69DATE
+     A                                      EDTCDE(Y)
+     A                                  2 69TIME
+     A                                  1 32'Mon 1er ecran RPG'
+     A                                      COLOR(WHT)
+     A                                  8 32'Hello la compagnie'
+     A                                      COLOR(PNK)
+     A            SPUT          15   B 13 36

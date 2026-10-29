@@ -1,0 +1,31 @@
+     A*%%TS  SD  20261021  135841  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R WQUIT
+     A*%%TS  SD  20261021  135841  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      WINDOW(8 20 6 40)
+     A                                      CF03(03 'Exit')
+     A                                      CF12(12 'NoExit')
+     A                                  2 11'Voulez-vous quitter ?'
+     A                                      COLOR(PNK)
+     A                                  5 11'F3=Oui'
+     A                                      COLOR(BLU)
+     A                                  5 25'F12=Non'
+     A                                      COLOR(BLU)
+     A          R DUMMY
+     A*%%TS  SD  20261019  203136  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      ASSUME
+     A                                 23 79' '
+     A          R WSUP
+     A*%%TS  SD  20261021  135841  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF03(03 'OUI')
+     A                                      CF12(12 'NON')
+     A                                      WINDOW(8 20 6 40)
+     A                                  1 10'Voulez vous supprimer ?'
+     A                                      COLOR(PNK)
+     A                                  5 10'F3=Oui'
+     A                                      COLOR(BLU)
+     A                                  5 26'F12=Non'
+     A                                      COLOR(BLU)
+     A                                  3 15'Sur de vous ?'
+     A                                      COLOR(PNK)

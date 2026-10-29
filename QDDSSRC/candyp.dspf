@@ -1,0 +1,75 @@
+     A*%%TS  SD  20261020  170010  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FCANDY
+     A*%%TS  SD  20261020  123234  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF03(03 'Quitter')
+     A                                  1  2SYSNAME
+     A                                  2  1USER
+     A                                  1 67TIME
+     A                                  2 67DATE
+     A                                      EDTCDE(Y)
+     A                                  1 26'On affiche les bonbon pas bon!'
+     A                                      COLOR(PNK)
+     A                                  8 23'Numero :'
+     A                                      COLOR(WHT)
+     A                                 10 23'Nom :'
+     A                                      COLOR(WHT)
+     A                                 12 23'Marque :'
+     A                                      COLOR(WHT)
+     A                                 14 23'Couleur :'
+     A                                      COLOR(WHT)
+     A                                 16 23'Prix :'
+     A                                      COLOR(WHT)
+     A            NUMBER    R        O  8 33REFFLD(FBONBON/NUMBER QUEMIN/CANDY)
+     A            NOM       R        O 10 30REFFLD(FBONBON/NOM QUEMIN/CANDY)
+     A            MARQUE    R        O 12 33REFFLD(FBONBON/MARQUE QUEMIN/CANDY)
+     A            COLOR     R        O 14 34REFFLD(FBONBON/COULEUR QUEMIN/CANDY)
+     A            PRIX      R        O 16 31REFFLD(FBONBON/PRIX QUEMIN/CANDY)
+     A                                      EDTCDE(N)
+     A                                 21  1'F3=Quitter'
+     A                                      COLOR(BLU)
+     A                                 16 39'€'
+     A                                  6 30'Entree pour le suivant'
+     A                                      COLOR(BLU)
+     A          R FDETAILS
+     A*%%TS  SD  20261020  170010  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF03(03 'Quitter')
+     A                                  1  2SYSNAME
+     A                                  2  1USER
+     A                                  1 67TIME
+     A                                  2 67DATE
+     A                                      EDTCDE(Y)
+     A                                  8 23'Numero :'
+     A                                      COLOR(WHT)
+     A                                 10 23'Nom :'
+     A                                      COLOR(WHT)
+     A                                 12 23'Marque :'
+     A                                      COLOR(WHT)
+     A                                 14 23'Couleur :'
+     A                                      COLOR(WHT)
+     A                                 16 23'Prix :'
+     A                                      COLOR(WHT)
+     A                                 21  1'F3=Quitter'
+     A                                      COLOR(BLU)
+     A                                 16 39'€'
+     A                                  1 27'On cree nos bonbons pas bon!'
+     A                                      COLOR(PNK)
+     A            PRIX      R     Y  B 16 32REFFLD(FBONBON/PRIX QUEMIN/CANDY)
+     A                                      CHECK(RZ)
+     A                                      EDTCDE(N)
+     A            COLOR     R        B 14 34REFFLD(FBONBON/COULEUR QUEMIN/CANDY)
+     A            MARQUE    R        B 12 33REFFLD(FBONBON/MARQUE QUEMIN/CANDY)
+     A            NOM       R        B 10 30REFFLD(FBONBON/NOM QUEMIN/CANDY)
+     A  52                                  ERRMSG('Toutes les zones sont oblig-
+     A                                      atoires')
+     A            NUMBER    R        B  8 33REFFLD(FBONBON/NUMBER QUEMIN/CANDY)
+     A  52                                  ERRMSG('numero obligatoire')
+     A                                      DSPATR(PR)
+     A                                  6 15'Completer les zones pour cree ou m-
+     A                                      odifier le bonbon'
+     A                                      COLOR(BLU)
+     A            MODE          12   O  3 35
+     A N90                                  COLOR(YLW)
+     A  90                                  COLOR(GRN)
+     A                                 16 40'€'

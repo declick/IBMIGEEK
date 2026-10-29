@@ -1,0 +1,27 @@
+     H            D J
+     * NIVEAU 2 : RUPTURE L1 SUR LA REGION, TOTAUX ET LR
+     FCYCVTE  IP  E                    DISK
+     FQSYSPRT O   F     132     OF     PRINTER
+     ICYCVTR      01
+     I              REGION                          REGIONL1
+     * CALCULS DE DETAIL : A CHAQUE ENREGISTREMENT LU
+     C   01      TOTREG    ADD  MONTNT    TOTREG  92
+     C   01      NBCLI     ADD  1         NBCLI   30
+     * CALCULS DE TOTAL : AU CHANGEMENT DE REGION
+     CL1         TOTGEN    ADD  TOTREG    TOTGEN 112
+     OQSYSPRT H  201   1P
+     O       OR        OF
+     O                                   24 'VENTES PAR REGION'
+     O        D  1     01
+     O                         REGION    12
+     O                         CLIENT    34
+     O                         MONTNTJ   46
+     O        T  2     L1
+     O                                   19 'TOTAL'
+     O                         REGION    30
+     O                         TOTREGJB  46
+     O                         NBCLI ZB  52
+     O                                   62 'CLIENT(S)'
+     O        T  1     LR
+     O                                   27 'TOTAL GENERAL'
+     O                         TOTGENJ   46

@@ -1,0 +1,12 @@
+     H            D J
+     *** NIVEAU 1 : LE CYCLE LIT, IMPRIME ET S'ARRETE TOUT SEUL
+     FCYCVTE  IP  E                    DISK
+     FQSYSPRT O   F     132     OF     PRINTER
+     ICYCVTR      01
+     OQSYSPRT H  201   1P
+     O       OR        OF
+     O                                   24 'VENTES PAR CLIENT'
+     O        D  1     01
+     O                         REGION    12
+     O                         CLIENT    34
+     O                         MONTNTJ   46

@@ -1,0 +1,66 @@
+     *
+     FCANDYI  IF  E                    DISK
+     FCANDYSFLCF  E                    WORKSTN
+     F                                        LIGNE KSFILE SFL1
+     *** RENOMAGE ZONE
+     IFBONBON
+     I              COULEUR                         COLOR
+     ISFL1
+     I              COULEUR                         COLOR
+     *
+     C           1         DOWEQ1
+     C                     EXSR CHARGE
+     C                     EXFMTCTL1
+     C   KC                LEAVE
+     C   KE                EXSR CHARGE
+     C   KF                CALL 'CANDYUPD'
+     C                     PARM 00000     NUMBER
+     C                     EXSR LECTUR
+     C                     ENDDO
+     C                     SETON                         LR
+     *** SOUS ROUTINES
+     C           CHARGE    BEGSR
+     C                     Z-ADD*ZERO     LIGNE   40
+     C                     SETON                     80
+     C                     WRITECTL1
+     C                     SETOF                     80
+     *
+     C           1         SETLLFBONBON
+     C                     READ FBONBON                  90
+     C           *IN90     DOWEQ'0'
+     C                     ADD  1         LIGNE
+     C                     WRITESFL1
+     C                     READ FBONBON                  90
+     C                     ENDDO
+     *
+     C                     SETON                     818283
+     C                     ENDSR
+     *
+     C           LECTUR    BEGSR
+     C                     READCSFL1                     91
+     C           *IN91     DOWEQ'0'
+     C           OPT       CASEQ'2'       MODIF
+     C           OPT       CASEQ'4'       SUPPR
+     C           OPT       CASEQ'6'       IMPRI
+     C                     ENDCS
+     C                     MOVEL*BLANK    OPT
+     C                     UPDATSFL1
+     C                     READCSFL1                     91
+     C                     ENDDO
+     C                     ENDSR
+     *
+     C           MODIF     BEGSR
+     C                     CALL 'CANDYUPD'
+     C                     PARM           NUMBER
+     C                     ENDSR
+     *
+     C           SUPPR     BEGSR
+     C                     Z-ADDNUMBER    WNUM   155
+     C                     CALL 'CANDYSUP'
+     C                     PARM           WNUM
+     C                     ENDSR
+     *
+     C           IMPRI     BEGSR
+     C                     CALL 'ICANDYF'
+     C                     PARM           NUMBER
+     C                     ENDSR

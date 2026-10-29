@@ -1,0 +1,28 @@
+     A*%%TS  SD  20261008  163752  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FMTSAVE
+     A*%%TS  SD  20261008  163752  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'F3=Exit')
+     A                                  1  2USER
+     A                                  2  2SYSNAME
+     A                                  1 27'Sauvegarde de bibliotheque'
+     A                                      COLOR(WHT)
+     A                                  1 69TIME
+     A                                  2 69DATE
+     A                                      EDTCDE(Y)
+     A                                  7 16'bibliotheque a save :'
+     A                                      COLOR(WHT)
+     A                                 10 31'date :'
+     A                                      COLOR(WHT)
+     A                                 23  4'F3=Exit'
+     A                                      COLOR(BLU)
+     A            MESS          70A  O 20  7COLOR(WHT)
+     A            SDATE         10A  O 10 40
+     A            SBIB          10A  I  7 40
+     A                                  4 13'Saisir la bibliotheque et le dossi-
+     A                                      er IFS, puis ENTREE'
+     A                                      COLOR(BLU)
+     A            SDOS          40A  I 13 40
+     A                                 13 24'Dossier IFS :'
+     A                                      COLOR(WHT)

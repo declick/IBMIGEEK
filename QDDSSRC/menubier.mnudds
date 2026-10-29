@@ -1,0 +1,71 @@
+     A* Menu de format libre : MENUBIER
+     A*%%TS  SD  20261022  101556  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3                  -
+     A                                             27 132 *DS4)
+     A                                      CHGINPDFT
+     A                                      INDARA
+     A                                      PRINT(*LIBL/QSYSPRT)
+     A          R MENUBIER
+     A*%%TS  SD  20261022  101556  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      DSPMOD(*DS3)
+     A                                      LOCK
+     A                                      SLNO(01)
+     A                                      CLRL(*ALL)
+     A                                      ALWROL
+     A                                      CF03
+     A                                      HELP
+     A                                      HOME
+     A                                      HLPRTN
+     A                                  1  2'MENUBIER'
+     A                                      COLOR(BLU)
+     A                                  1 32'MENUBIER Menu'
+     A                                      DSPATR(HI)
+     A                                  3  2'Choisir une des options suivantes -
+     A                                      :'
+     A                                      COLOR(BLU)
+     A                                  5  7'1.'
+     A                                  6  7'2.'
+     A* CMDPROMPT  Ne pas supprimer cette spécification DDS.
+     A                                019  2'Option ou commande                -
+     A                                          '
+     A                                  5 10'Creer'
+     A                                  5 16'une'
+     A                                  5 20'biere'
+     A                                  6 10'Modifier'
+     A                                  6 19'une'
+     A                                  6 23'biere'
+     A                                  8  4'  '
+     A                                  9  1' '
+     A                                 13 52'('
+     A                                 14 40' (_'
+     A                                 14 45'_'
+     A                                 14 49'_'
+     A                                 14 51'_'
+     A                                  8 45'/\_____/\'
+     A                                  9 44'/'
+     A                                  9 47'x'
+     A                                  9 51'@'
+     A                                  9 54'\'
+     A                                  9 60'hic'
+     A                                  9 64'!'
+     A                                 10 43'('
+     A                                 10 50'^'
+     A                                 10 56')'
+     A                                 11 44')'
+     A                                 11 49'~'
+     A                                 11 55'('
+     A                                 12 43'('
+     A                                 13 42'('
+     A                                 13 44'('
+     A                                 13 47')'
+     A                                 13 54')'
+     A                                 13 56')'
+     A                                 14 38' '
+     A                                 14 36' '
+     A                                 14 53'_'
+     A                                 13 61' '
+     A                                 12 55')'
+     A                                 14 34' '
+     A                                 14 56'_)'
+     A                                 14 47'_'

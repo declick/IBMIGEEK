@@ -1,0 +1,24 @@
+     H
+     *** DECLARATION DU FICHIER
+     FSOLDAT  IF  E           K        DISK
+     FSOLDATD CF  E                    WORKSTN
+     *** TRAITEMENT
+     *** AFFICHAGE FMTSOL2
+     C           SFIL      DOWEQ*BLANKS
+     C                     EXFMTFMTSOL2
+     C   03                GOTO FIN
+     C                     ENDDO
+     *** POSITIONNEMENT DU FICHIER
+     C           *LOVAL    SETLLSOLDAT
+     *** LECTURE DU FICHIER
+     C           DEBUT     TAG
+     C                     READ SOLDAT                   99
+     *** AFFICHAGE ECRAN
+     C           CLSLDT    IFEQ SFIL
+     C                     EXFMTFMTSOL
+     C                     ENDIF
+     C   03                GOTO FIN
+     C  N99                GOTO DEBUT
+     *** FIN DU TRAITEMENT
+     C           FIN       TAG
+     C                     SETON                         LR

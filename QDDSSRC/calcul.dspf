@@ -1,0 +1,35 @@
+     A*%%TS  SD  20261019  190704  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FMTCAL
+     A*%%TS  SD  20261019  190704  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF03(03)
+     A                                      CF06(06)
+     A                                  1  2SYSNAME
+     A                                  2  1USER
+     A                                  1 70TIME
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                  1 35'CALCULATRICE'
+     A                                      COLOR(PNK)
+     A                                 11 22'FACTEUR1 :'
+     A                                      COLOR(WHT)
+     A                                 11 40'COP'
+     A                                      COLOR(WHT)
+     A                                 18 26'Resultat =>'
+     A                                      COLOR(WHT)
+     A                                 11 53'FACTEUR2 :'
+     A                                      COLOR(WHT)
+     A                                 21  8'F3=Exit'
+     A                                      COLOR(BLU)
+     A                                 21 22'F6=RAZ'
+     A                                      COLOR(BLU)
+     A                                 18 53' '
+     A            RESULT        10Y 2O 18 40EDTCDE(N)
+     A  51                                  COLOR(RED)
+     A            FACT1         10Y 2B 15 19EDTCDE(N)
+     A            FACT2         10Y 2B 15 50
+     A  50                                  ERRMSG('Division par zero impossibl-
+     A                                      e')
+     A                                      EDTCDE(N)
+     A            COP            1A  B 15 41

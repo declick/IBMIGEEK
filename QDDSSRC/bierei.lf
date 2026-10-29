@@ -1,0 +1,9 @@
+     A          R PRODUIT                   PFILE(BIERE)
+     A            PRIDPR
+     A            PRNOPR
+     A            TXTVA                     RENAME(TXTVAPR)
+     A            PRSTPR
+     A            STMIPR
+     A            PRUNVE
+     A            PRREPR
+     A          K PRIDPR

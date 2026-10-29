@@ -1,0 +1,107 @@
+     A*%%TS  SD  20261028  101143  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R SFL1                      SFL
+     A*%%TS  SD  20261028  091800  QUEMIN07    REL-V7R5M0  5770-WDS
+     A            OPT            1   B 13  4
+     A            SFIC          10   O 13  9
+     A            SMBR          10   O 13 23
+     A            SATR          10   O 13 37
+     A            SDAT           8   O 13 51
+     A            STXT          50   O 14 22
+     A          R CTL1                      SFLCTL(SFL1)
+     A*%%TS  SD  20261028  091800  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF03
+     A                                      CF05
+     A                                      CF09
+     A                                      CF12
+     A                                      CF21
+     A                                      OVERLAY
+     A  82                                  SFLDSP
+     A  81                                  SFLDSPCTL
+     A  80                                  SFLCLR
+     A  83                                  SFLEND(*MORE)
+     A                                      SFLSIZ(0050)
+     A                                      SFLPAG(0004)
+     A            PGM           10   O  1  3
+     A                                  2  3USER
+     A                                  1 71DATE
+     A                                      EDTCDE(Y)
+     A                                  2 71TIME
+     A                                  1 28'Liste des membres sources'
+     A                                      COLOR(WHT)
+     A                                  3  3'Bibliothèque . . . . . :'
+     A                                      COLOR(WHT)
+     A            SLIB          10   O  3 29
+     A                                  4  3'Répertoire IFS . . . . :'
+     A                                      COLOR(WHT)
+     A            SDIR          50   O  4 29
+     A                                  5  3'Fichier source . . . . .'
+     A                                      COLOR(WHT)
+     A            FFIC          10   B  5 29
+     A                                  5 42'Nom, générique*, à blanc = tous'
+     A                                      COLOR(BLU)
+     A                                  6  3'Attribut . . . . . . . .'
+     A                                      COLOR(WHT)
+     A            FATR          10   B  6 29
+     A                                  6 42'Nom, générique*, à blanc = tous'
+     A                                      COLOR(BLU)
+     A                                  8  3'Indiquez vos options, puis appuyez-
+     A                                       sur Entrée.'
+     A                                      COLOR(BLU)
+     A                                  9  5'6=Exporter vers l IFS'
+     A                                      COLOR(BLU)
+     A                                 11  4'Opt'
+     A                                      COLOR(WHT)
+     A                                 11 10'Fichier'
+     A                                      COLOR(WHT)
+     A                                 11 24'Membre'
+     A                                      COLOR(WHT)
+     A                                 11 38'Attribut'
+     A                                      COLOR(WHT)
+     A                                 11 52'Modifié le'
+     A                                      COLOR(WHT)
+     A          R DUMMY
+     A*%%TS  SD  20261028  091800  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      ASSUME
+     A                                  1 78' '
+     A          R PIED
+     A*%%TS  SD  20261028  094232  QUEMIN07    REL-V7R5M0  5770-WDS
+     A            MESS          70   O 22  6COLOR(RED)
+     A                                 23  3'F3=Exit F5=Réactualiser F9=Réperto-
+     A                                      ire IFS F12=Annuler F21=Export ZIP'
+     A                                      COLOR(BLU)
+     A          R WREP
+     A*%%TS  SD  20261028  101143  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF12
+     A                                      WINDOW(5 10 8 56)
+     A                                  1 18'Répertoire d export IFS'
+     A                                      COLOR(WHT)
+     A                                  3  2'Chemin :'
+     A                                      COLOR(WHT)
+     A            WDIR          50A  B  4  2CHECK(LC)
+     A                                  6  2'F12=Annuler'
+     A                                      COLOR(BLU)
+     A            WMSG          50A  O  7  4COLOR(RED)
+     A          R WZIP
+     A*%%TS  SD  20261028  101143  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CF12
+     A                                      WINDOW(5 10 11 58)
+     A                                  1 25'Export ZIP'
+     A                                      COLOR(WHT)
+     A                                  3  2'Bibliothèque . . :'
+     A                                      COLOR(WHT)
+     A            ZLIB          10A  O  3 22
+     A                                  4  2'Membres  . . . . :'
+     A                                      COLOR(WHT)
+     A                                  4 32'(tous les membres sources)'
+     A                                      COLOR(WHT)
+     A                                  5  2'Archive :'
+     A                                      COLOR(WHT)
+     A            ZARC          54A  O  6  3
+     A                                  8  2'Confirmer (O/N) . . .'
+     A                                      COLOR(WHT)
+     A            ZCONF          1A  B  8 25VALUES('O' 'N')
+     A                                 10  2'F12=Annuler'
+     A                                      COLOR(BLU)
+     A            ZNB            5Y 0O  4 22EDTCDE(Z)

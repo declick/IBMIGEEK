@@ -1,0 +1,20 @@
+     A*%%TS  SD  20261008  123443  QUEMIN07    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R FMTSAIS
+     A*%%TS  SD  20261008  123443  QUEMIN07    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'F3=Exit')
+     A                                  1  2USER
+     A                                  2  2SYSNAME
+     A                                  1 28'Consultation d une bibliotheque'
+     A                                      COLOR(WHT)
+     A                                  1 71DATE
+     A                                      EDTCDE(Y)
+     A                                  2 71TIME
+     A                                  7 26'Tapez une bibliotheque, puis ENTRE-
+     A                                      E'
+     A                                      COLOR(BLU)
+     A                                 23  6'F3=Exit'
+     A                                      COLOR(BLU)
+     A            MESS          70A  O 20  7COLOR(WHT)
+     A            SBIB          10A  I 13 39

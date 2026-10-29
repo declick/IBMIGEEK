@@ -1,0 +1,16 @@
+     FBIEREI  IF  E           K        DISK
+     FBIEREPR O   E                    PRINTER
+     *** IDENTIFIANT RECU DE LA LISTE
+     C           *ENTRY    PLIST
+     C                     PARM           ID      60
+     *** LECTURE DE LA BIERE
+     C           ID        CHAINPRODUIT              90
+     C   90                GOTO FIN
+     *** PRIX TTC (RG006)
+     C           PRUNVE    MULT TXTVA     WTVA   104
+     C           WTVA      DIV  100       WTVA
+     C           PRUNVE    ADD  WTVA      PRIXTT    H
+     *** IMPRESSION DE LA FICHE
+     C                     WRITEFICHE
+     C           FIN       TAG
+     C                     SETON                         LR
